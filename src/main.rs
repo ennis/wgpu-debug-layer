@@ -83,6 +83,10 @@ fn main() {
         d3d12_device.unwrap()
     };
 
+    unsafe {
+        d3d12_device.GetDeviceRemovedReason().expect("before WGPU: device was removed")
+    }
+
     //=========================================================
     // WGPU init
     let instance = wgpu::Instance::new(wgpu::InstanceDescriptor {
@@ -93,6 +97,6 @@ fn main() {
     });
 
     unsafe {
-        d3d12_device.GetDeviceRemovedReason().expect("device was removed")
+        d3d12_device.GetDeviceRemovedReason().expect("after WGPU: device was removed")
     }
 }
